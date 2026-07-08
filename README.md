@@ -21,22 +21,29 @@ A lightweight macOS menu-bar app that monitors your Mac's **thermal pressure, CP
 
 ## Install
 
+The app is ad-hoc signed but **not notarized** yet, so macOS quarantines it. Clear the flag once
+after installing (this is a one-time step).
+
 ### Homebrew
 
 ```bash
-brew install --cask ishaanpilar/tap/macmonitor --no-quarantine
+brew install --cask ishaanpilar/tap/macmonitor
+xattr -dr com.apple.quarantine /Applications/MacMonitor.app
 ```
 
 ### Download
 
-1. Download the latest `MacMonitor-x.y.z.dmg` from [Releases](https://github.com/ishaanpilar/MacMonitor/releases).
-2. Open it and drag **MacMonitor** to Applications.
-3. The app isn't notarized yet, so remove the quarantine flag once:
+1. Download `MacMonitor-x.y.z.dmg` from [Releases](https://github.com/ishaanpilar/MacMonitor/releases), open it, and drag **MacMonitor** to Applications.
+2. Clear the quarantine flag once, in Terminal:
    ```bash
    xattr -dr com.apple.quarantine /Applications/MacMonitor.app
    ```
-   (Or right-click the app → **Open** the first time.)
-4. Launch it — the vitals icon appears in your menu bar.
+   **Or** without Terminal: double-click the app, dismiss the "could not verify" prompt, then open
+   **System Settings → Privacy & Security**, scroll to *Security*, and click **Open Anyway**.
+3. Launch it — the vitals icon appears in your menu bar.
+
+> On recent macOS, right-click → Open no longer bypasses this, and Homebrew removed the
+> `--no-quarantine` flag — the `xattr` command (or *Open Anyway*) is the reliable way until the app is notarized.
 
 ## Build
 
