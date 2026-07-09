@@ -1,8 +1,8 @@
 /*
- * macmonitor-fan-helper
+ * mactelemetry-fan-helper
  *
  * A tiny privileged helper that writes Apple SMC fan-control keys. Installed once at
- * /Library/PrivilegedHelperTools, owned by root with the setuid bit set, so MacMonitor
+ * /Library/PrivilegedHelperTools, owned by root with the setuid bit set, so MacTelemetry
  * (running unprivileged) can force/restore fan speed without a password prompt on every write.
  *
  * SMC *reads* need no special privilege on macOS -- only writes do (IOConnectCallStructMethod
@@ -10,8 +10,8 @@
  * current macOS release, Intel and Apple Silicon alike). Hence this helper exists.
  *
  * Commands:
- *   macmonitor-fan-helper set <fanIndex> <rpm>   Force fanIndex to spin at rpm.
- *   macmonitor-fan-helper auto <fanIndex>        Restore automatic control for fanIndex.
+ *   mactelemetry-fan-helper set <fanIndex> <rpm>   Force fanIndex to spin at rpm.
+ *   mactelemetry-fan-helper auto <fanIndex>        Restore automatic control for fanIndex.
  *
  * Exit code 0 on success, non-zero otherwise (message on stderr).
  */
