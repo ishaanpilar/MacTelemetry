@@ -5,18 +5,11 @@ struct AboutView: View {
 
     var body: some View {
         VStack(spacing: 16) {
-            if #available(macOS 26.0, *) {
-                Image(nsImage: NSImage(named: "AppIcon") ?? NSApp.applicationIconImage)
-                    .resizable()
-                    .frame(width: 128, height: 128)
-                    .cornerRadius(24)
-                    .glassEffect(.regular.interactive(), in: RoundedRectangle(cornerRadius: 24))
-            } else {
-                Image(nsImage: NSImage(named: "AppIcon") ?? NSApp.applicationIconImage)
-                    .resizable()
-                    .frame(width: 128, height: 128)
-                    .cornerRadius(24)
-            }
+            Image(nsImage: NSImage(named: "AppIcon") ?? NSApp.applicationIconImage)
+                .resizable()
+                .frame(width: 128, height: 128)
+                .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 24))
+                .cornerRadius(24)
 
             Text("MacMonitor")
                 .font(.title)
@@ -38,14 +31,8 @@ struct AboutView: View {
             updateSection
 
             if let url = URL(string: "https://github.com/ishaanpilar/MacMonitor") {
-                if #available(macOS 26.0, *) {
-                    Link("View on GitHub", destination: url)
-                        .font(.caption)
-                        .glassEffect()
-                } else {
-                    Link("View on GitHub", destination: url)
-                        .font(.caption)
-                }
+                Link("View on GitHub", destination: url)
+                    .font(.caption)
             }
         }
         .padding(32)
